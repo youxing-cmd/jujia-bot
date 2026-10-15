@@ -1,0 +1,103 @@
+{
+  "materials": [
+    {
+      "id": "floor_oak",
+      "name": "橡木地板",
+      "category": "floor",
+      "color": "#C4A574",
+      "roughness": 0.62,
+      "metalness": 0
+    },
+    {
+      "id": "floor_tile",
+      "name": "浅灰地砖",
+      "category": "floor",
+      "color": "#D5D2CB",
+      "roughness": 0.28,
+      "metalness": 0.02
+    },
+    {
+      "id": "wall_white",
+      "name": "暖白墙面",
+      "category": "wall",
+      "color": "#F3F0E8",
+      "roughness": 0.9,
+      "metalness": 0
+    },
+    {
+      "id": "wall_warm",
+      "name": "暖米色墙面",
+      "category": "wall",
+      "color": "#E7D7C1",
+      "roughness": 0.88,
+      "metalness": 0
+    }
+  ],
+  "items": [
+    {
+      "id": "sofa_210",
+      "name": "三人沙发",
+      "category": "sofa",
+      "width": 2.1,
+      "depth": 0.9,
+      "height": 0.82,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "procedural",
+        "shape": "sofa"
+      }
+    },
+    {
+      "id": "sofa_160",
+      "name": "双人沙发",
+      "category": "sofa",
+      "width": 1.6,
+      "depth": 0.85,
+      "height": 0.78,
+      "color": "#8C6E5A",
+      "model": {
+        "kind": "procedural",
+        "shape": "sofa"
+      }
+    },
+    {
+      "id": "cabinet_120",
+      "name": "衣柜",
+      "category": "cabinet",
+      "width": 1.2,
+      "depth": 0.55,
+      "height": 2.2,
+      "color": "#A67C52",
+      "model": {
+        "kind": "procedural",
+        "shape": "box"
+      }
+    }
+  ],
+  "openingStyles": [
+    {
+      "id": "door_flat",
+      "name": "平板门",
+      "kind": "door",
+      "color": "#8C6A4A"
+    },
+    {
+      "id": "door_glass",
+      "name": "玻璃门",
+      "kind": "door",
+      "color": "#9BB8C4"
+    },
+    {
+      "id": "window_sliding",
+      "name": "推拉窗",
+      "kind": "window",
+      "color": "#A9C7D6"
+    },
+    {
+      "id": "window_casement",
+      "name": "平开窗",
+      "kind": "window",
+      "color": "#8FB4C4"
+    }
+  ]
+}

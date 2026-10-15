@@ -1,0 +1,411 @@
+{
+  "version": "1.0.0",
+  "id": "scene_demo_2b1l",
+  "name": "两室一厅示例",
+  "units": "m",
+  "status": "plan_confirmed",
+  "scale": {
+    "method": "authored_meters",
+    "confirmed": true
+  },
+  "source": {
+    "kind": "authored",
+    "fileName": "two-bedroom.json"
+  },
+  "materials": [
+    {
+      "id": "floor_oak",
+      "name": "橡木地板",
+      "category": "floor",
+      "color": "#C4A574",
+      "roughness": 0.62,
+      "metalness": 0
+    },
+    {
+      "id": "floor_tile",
+      "name": "浅灰地砖",
+      "category": "floor",
+      "color": "#D5D2CB",
+      "roughness": 0.28,
+      "metalness": 0.02
+    },
+    {
+      "id": "wall_white",
+      "name": "暖白墙面",
+      "category": "wall",
+      "color": "#F3F0E8",
+      "roughness": 0.9,
+      "metalness": 0
+    }
+  ],
+  "levels": [
+    {
+      "id": "L1",
+      "elevation": 0,
+      "ceilingHeight": 2.8,
+      "walls": [
+        {
+          "id": "w_ext_s",
+          "a": {
+            "x": 0,
+            "y": 0.1
+          },
+          "b": {
+            "x": 8.6,
+            "y": 0.1
+          },
+          "thickness": 0.2
+        },
+        {
+          "id": "w_ext_n",
+          "a": {
+            "x": 0,
+            "y": 6.9
+          },
+          "b": {
+            "x": 8.6,
+            "y": 6.9
+          },
+          "thickness": 0.2
+        },
+        {
+          "id": "w_ext_w",
+          "a": {
+            "x": 0.1,
+            "y": 0
+          },
+          "b": {
+            "x": 0.1,
+            "y": 7
+          },
+          "thickness": 0.2
+        },
+        {
+          "id": "w_ext_e",
+          "a": {
+            "x": 8.5,
+            "y": 0
+          },
+          "b": {
+            "x": 8.5,
+            "y": 7
+          },
+          "thickness": 0.2
+        },
+        {
+          "id": "w_living_north",
+          "a": {
+            "x": 0.1,
+            "y": 4.3
+          },
+          "b": {
+            "x": 5.3,
+            "y": 4.3
+          },
+          "thickness": 0.2
+        },
+        {
+          "id": "w_kitchen_bed",
+          "a": {
+            "x": 2.7,
+            "y": 4.3
+          },
+          "b": {
+            "x": 2.7,
+            "y": 6.9
+          },
+          "thickness": 0.2
+        },
+        {
+          "id": "w_spine",
+          "a": {
+            "x": 5.3,
+            "y": 0.1
+          },
+          "b": {
+            "x": 5.3,
+            "y": 6.9
+          },
+          "thickness": 0.2
+        },
+        {
+          "id": "w_bath_master",
+          "a": {
+            "x": 5.3,
+            "y": 2.7
+          },
+          "b": {
+            "x": 8.5,
+            "y": 2.7
+          },
+          "thickness": 0.2
+        }
+      ],
+      "openings": [
+        {
+          "id": "door_entry",
+          "wallId": "w_ext_s",
+          "kind": "door",
+          "offset": 2.0,
+          "width": 0.9,
+          "height": 2.1,
+          "sill": 0,
+          "styleId": "door_flat"
+        },
+        {
+          "id": "door_kitchen",
+          "wallId": "w_living_north",
+          "kind": "door",
+          "offset": 0.9,
+          "width": 0.8,
+          "height": 2.1,
+          "sill": 0,
+          "styleId": "door_flat"
+        },
+        {
+          "id": "door_second",
+          "wallId": "w_living_north",
+          "kind": "door",
+          "offset": 3.5,
+          "width": 0.8,
+          "height": 2.1,
+          "sill": 0,
+          "styleId": "door_flat"
+        },
+        {
+          "id": "door_bath",
+          "wallId": "w_spine",
+          "kind": "door",
+          "offset": 0.9,
+          "width": 0.75,
+          "height": 2.0,
+          "sill": 0,
+          "styleId": "door_flat"
+        },
+        {
+          "id": "door_master",
+          "wallId": "w_spine",
+          "kind": "door",
+          "offset": 3.3,
+          "width": 0.8,
+          "height": 2.1,
+          "sill": 0,
+          "styleId": "door_glass"
+        },
+        {
+          "id": "win_living",
+          "wallId": "w_ext_w",
+          "kind": "window",
+          "offset": 1.2,
+          "width": 1.5,
+          "height": 1.4,
+          "sill": 0.9,
+          "styleId": "window_sliding"
+        },
+        {
+          "id": "win_kitchen",
+          "wallId": "w_ext_n",
+          "kind": "window",
+          "offset": 0.5,
+          "width": 1.2,
+          "height": 1.2,
+          "sill": 1.0,
+          "styleId": "window_sliding"
+        },
+        {
+          "id": "win_second",
+          "wallId": "w_ext_n",
+          "kind": "window",
+          "offset": 3.4,
+          "width": 1.2,
+          "height": 1.4,
+          "sill": 0.9,
+          "styleId": "window_casement"
+        },
+        {
+          "id": "win_bath",
+          "wallId": "w_ext_e",
+          "kind": "window",
+          "offset": 0.7,
+          "width": 0.8,
+          "height": 0.6,
+          "sill": 1.5,
+          "styleId": "window_sliding"
+        },
+        {
+          "id": "win_master",
+          "wallId": "w_ext_e",
+          "kind": "window",
+          "offset": 3.6,
+          "width": 1.6,
+          "height": 1.5,
+          "sill": 0.9,
+          "styleId": "window_casement"
+        }
+      ],
+      "rooms": [
+        {
+          "id": "living",
+          "name": "客厅",
+          "usage": "living",
+          "polygon": [
+            {
+              "x": 0.2,
+              "y": 0.2
+            },
+            {
+              "x": 5.2,
+              "y": 0.2
+            },
+            {
+              "x": 5.2,
+              "y": 4.2
+            },
+            {
+              "x": 0.2,
+              "y": 4.2
+            }
+          ],
+          "floorMaterialId": "floor_oak",
+          "wallMaterialId": "wall_white"
+        },
+        {
+          "id": "kitchen",
+          "name": "厨房",
+          "usage": "kitchen",
+          "polygon": [
+            {
+              "x": 0.2,
+              "y": 4.4
+            },
+            {
+              "x": 2.6,
+              "y": 4.4
+            },
+            {
+              "x": 2.6,
+              "y": 6.8
+            },
+            {
+              "x": 0.2,
+              "y": 6.8
+            }
+          ],
+          "floorMaterialId": "floor_tile",
+          "wallMaterialId": "wall_white"
+        },
+        {
+          "id": "bedroom_second",
+          "name": "次卧",
+          "usage": "bedroom",
+          "polygon": [
+            {
+              "x": 2.8,
+              "y": 4.4
+            },
+            {
+              "x": 5.2,
+              "y": 4.4
+            },
+            {
+              "x": 5.2,
+              "y": 6.8
+            },
+            {
+              "x": 2.8,
+              "y": 6.8
+            }
+          ],
+          "floorMaterialId": "floor_oak",
+          "wallMaterialId": "wall_white"
+        },
+        {
+          "id": "bath",
+          "name": "卫生间",
+          "usage": "bath",
+          "polygon": [
+            {
+              "x": 5.4,
+              "y": 0.2
+            },
+            {
+              "x": 8.4,
+              "y": 0.2
+            },
+            {
+              "x": 8.4,
+              "y": 2.6
+            },
+            {
+              "x": 5.4,
+              "y": 2.6
+            }
+          ],
+          "floorMaterialId": "floor_tile",
+          "wallMaterialId": "wall_white"
+        },
+        {
+          "id": "bedroom_master",
+          "name": "主卧",
+          "usage": "bedroom",
+          "polygon": [
+            {
+              "x": 5.4,
+              "y": 2.8
+            },
+            {
+              "x": 8.4,
+              "y": 2.8
+            },
+            {
+              "x": 8.4,
+              "y": 6.8
+            },
+            {
+              "x": 5.4,
+              "y": 6.8
+            }
+          ],
+          "floorMaterialId": "floor_oak",
+          "wallMaterialId": "wall_white"
+        }
+      ],
+      "slots": [
+        {
+          "id": "slot_sofa",
+          "roomId": "living",
+          "kind": "furniture",
+          "x": 2.6,
+          "y": 1.6,
+          "rotation": 0,
+          "width": 2.1,
+          "depth": 0.9,
+          "height": 0.82,
+          "maxWidth": 2.6,
+          "maxDepth": 1.2,
+          "maxHeight": 1.0,
+          "catalogItemId": "sofa_210"
+        },
+        {
+          "id": "slot_wardrobe",
+          "roomId": "bedroom_master",
+          "kind": "cabinet",
+          "x": 6.9,
+          "y": 6.3,
+          "rotation": 0,
+          "width": 1.2,
+          "depth": 0.55,
+          "height": 2.2,
+          "maxWidth": 2.0,
+          "maxDepth": 0.6,
+          "maxHeight": 2.4,
+          "catalogItemId": "cabinet_120",
+          "capacity": {
+            "volumeM3": 0.9,
+            "shelves": 4
+          }
+        }
+      ]
+    }
+  ]
+}
