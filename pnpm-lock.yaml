@@ -13,6 +13,9 @@ importers:
       '@jujia/catalog':
         specifier: workspace:*
         version: link:../../packages/catalog
+      '@jujia/clutter':
+        specifier: workspace:*
+        version: link:../../packages/clutter
       '@jujia/commands':
         specifier: workspace:*
         version: link:../../packages/commands
@@ -61,6 +64,22 @@ importers:
         version: 7.3.7
 
   packages/catalog:
+    devDependencies:
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.3
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7
+
+  packages/clutter:
+    dependencies:
+      '@jujia/catalog':
+        specifier: workspace:*
+        version: link:../catalog
+      '@jujia/scene':
+        specifier: workspace:*
+        version: link:../scene
     devDependencies:
       typescript:
         specifier: ^5.9.2

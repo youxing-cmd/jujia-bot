@@ -1,0 +1,22 @@
+家具和门模型均为 CC0，可商用。缩放只发生在预览里，不改场景尺寸。
+
+Poly Haven
+- sofa_03（三人沙发 sofa_210） https://polyhaven.com/a/sofa_03
+- sofa_02（双人沙发 sofa_160） https://polyhaven.com/a/sofa_02
+- CoffeeTable_01（咖啡桌 table_coffee） https://polyhaven.com/a/CoffeeTable_01
+- chinese_tea_table（茶桌 table_tea） https://polyhaven.com/a/chinese_tea_table
+- side_table_01（边几 table_side） https://polyhaven.com/a/side_table_01
+- Shelf_01（靠墙书架 shelf_wall） https://polyhaven.com/a/Shelf_01
+- GothicBed_01（双人床 bed_gothic） https://polyhaven.com/a/GothicBed_01
+- ClassicNightstand_01（床头柜 table_nightstand） https://polyhaven.com/a/ClassicNightstand_01
+- vintage_day_bed（单人床 bed_day） https://polyhaven.com/a/vintage_day_bed
+- SchoolDesk_01（书桌 desk_school） https://polyhaven.com/a/SchoolDesk_01
+- chinese_cabinet（衣柜 cabinet_120） https://polyhaven.com/a/chinese_cabinet
+分辨率 1k glTF。
+
+Kenney Furniture Kit
+- door-rotate-square-a（平板门 door_flat）
+- door-rotate-square-d（玻璃门 door_glass，玻璃节点保留）
+https://kenney.nl/assets/furniture-kit
+
+窗没有使用 Kenney 的墙体模块。窗框和玻璃按洞口尺寸在预览里绘制。

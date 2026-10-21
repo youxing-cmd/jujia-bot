@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@jujia/catalog": "workspace:*",
+    "@jujia/clutter": "workspace:*",
     "@jujia/commands": "workspace:*",
     "@jujia/preview-3d": "workspace:*",
     "@jujia/scene": "workspace:*",

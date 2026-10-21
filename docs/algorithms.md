@@ -27,7 +27,7 @@
 
 ## 目录
 
-`@jujia/catalog` 只暴露 `fixtures/catalog.json` 的内容。按 id 查找，找不到返回 `undefined`。不要增删条目。
+`@jujia/catalog` 只暴露 `fixtures/catalog.json` 的内容。按 id 查找，找不到返回 `undefined`。条目以 `fixtures/catalog.json` 为准。
 
 ## 命令 `applyCommand(scene, command)`
 
@@ -74,7 +74,7 @@
 
 不抛异常。缺材质时地板用 `#CCCCCC`，粗糙度 1，金属度 0。
 
-网格数量等于房间数 + 墙数 + 门窗数 + 槽位数。示例场景是 25。
+网格数量等于房间数 + 墙数 + 门窗数 + 槽位数。示例场景是 32。
 
 - 地板：`id` 为 `{roomId}:floor`，`polygon` 为房间多边形，`position` 为 `{x:0,y:elevation,z:0}`，`size` 为 `{x:0,y:0.02,z:0}`，`rotationY` 为 0。颜色和粗糙度来自 `floorMaterialId`。
 - 墙：中点映射为位置，`y = height / 2 + elevation`。高度缺省用层高。`rotationY = atan2(b.y - a.y, b.x - a.x)`。`size.x` 是墙长，`size.y` 是高度，`size.z` 是厚度。颜色优先用 id 为 `wall_white` 的材质，否则用第一份墙面材质。
@@ -82,3 +82,30 @@
 - 家具和柜体：使用槽位当前宽深高，不用目录尺寸。`position` 为 `{x:slot.x, y:height/2+elevation, z:slot.y}`，`rotationY` 为槽位旋转，`size` 为 `{x:width,y:height,z:depth}`。`sofa_210 #4E6A78`，`sofa_160 #8C6E5A`，`cabinet_120 #A67C52`。其他家具 `#4E6A78`，其他柜体 `#A67C52`。
 
 `role` 分别是 `floor`、`wall`、`door`、`window`、`furniture`、`cabinet`。门窗写 `openingId`，地板写 `roomId`，槽位写 `slotId` 和 `roomId`。
+
+## 归位 `suggestPlacements(scene, items)`
+
+只读，不改场景，也不改清单。`plan_confirmed` 和 `frozen` 都可以建议。
+
+拒绝顺序：
+
+1. `status === "draft"` → `{ ok: false, code: "not_confirmed", message: "平面还没确认，先不定杂物放哪。" }`
+2. `scale.confirmed !== true` → 同一 code，文案是「比例还没确认，先不定杂物放哪。」
+3. 清单不合法 → `{ ok: false, code: "invalid_item", message: "杂物清单不合法。" }`。不合法包括 id 为空或重复、名称为空、类别不在 `clothes`、`bedding`、`shoes`、`books`、`documents`、`toys`、`daily`、`toiletries`、`kitchen`，以及容积不是大于 0 的有限数。
+
+已确认的空清单返回 `{ ok: true, placements: [], unplaced: [] }`。
+
+宿主从槽位识别，名称取目录物品名：
+
+- `kind === "cabinet"` 的槽是柜。层容积用槽位里已经存好的 `capacity`，不按宽深高重算。
+- 名称含床头柜或 `nightstand` 是床头柜，容积系数 0.35。
+- 名称含书桌或 `desk` 是书桌，系数 0.25。
+- 类别是 `storage`，或名称含书架、层架、`shelf`，是层架，系数 0.62。
+
+非柜体容积是 `round3(width * depth * height * 系数)`，层数是 `max(1, floor(height / 0.4) - 1)`。总容积按层均分到毫升。
+
+偏好：衣服、被褥、鞋子只要柜；书先书架再书桌；文件先书桌再书架；玩具只要书架；日用先床头柜，再书架，再柜。洗漱用品只进卫生间的柜或床头柜，没有时原因是「卫生间还没有柜或层架，不塞进卧室」。厨具只进厨房柜，没有时原因是「这套房没有厨房柜」。有位置但装不下时原因是「合适的位置已经满了」。
+
+鞋子先把这一批的体积预留到得分最高的那一个柜。那个柜装不下，也不改去更大的柜。其余物品按体积从大到小，体积相同按 id 升序。一件物品占连续空层；鞋子只吃预留层里的剩余容积，其他物品占层后把整层记满。
+
+默认两室、衣柜容量 0.9 立方米 4 层时：被子、冬衣、衬衫、鞋子进主卧衣柜的第 2、3、4、1 层；小说、积木、杂志进客厅靠墙书架的第 1、2、3 层；税单进次卧书桌第 1 层；充电器进主卧床头柜第 1 层；洗漱用品和锅具不放置。

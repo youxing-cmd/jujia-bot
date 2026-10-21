@@ -43,8 +43,14 @@
       "height": 0.82,
       "color": "#4E6A78",
       "model": {
-        "kind": "procedural",
-        "shape": "sofa"
+        "kind": "gltf",
+        "url": "/models/polyhaven/sofa_03/sofa_03_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
       }
     },
     {
@@ -56,8 +62,166 @@
       "height": 0.78,
       "color": "#8C6E5A",
       "model": {
-        "kind": "procedural",
-        "shape": "sofa"
+        "kind": "gltf",
+        "url": "/models/polyhaven/sofa_02/sofa_02_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "table_coffee",
+      "name": "咖啡桌",
+      "category": "table",
+      "width": 1.54,
+      "depth": 0.973,
+      "height": 0.523,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/CoffeeTable_01/CoffeeTable_01_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "table_tea",
+      "name": "茶桌",
+      "category": "table",
+      "width": 0.841,
+      "depth": 0.836,
+      "height": 0.499,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/chinese_tea_table/chinese_tea_table_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "table_side",
+      "name": "边几",
+      "category": "table",
+      "width": 0.55,
+      "depth": 0.45,
+      "height": 0.551,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/side_table_01/side_table_01_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "shelf_wall",
+      "name": "靠墙书架",
+      "category": "storage",
+      "width": 1.003,
+      "depth": 0.257,
+      "height": 2.08,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/Shelf_01/Shelf_01_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "bed_gothic",
+      "name": "双人床",
+      "category": "bed",
+      "width": 1.494,
+      "depth": 2.04,
+      "height": 1.534,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/GothicBed_01/GothicBed_01_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "table_nightstand",
+      "name": "床头柜",
+      "category": "table",
+      "width": 0.568,
+      "depth": 0.424,
+      "height": 0.7,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/ClassicNightstand_01/ClassicNightstand_01_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "bed_day",
+      "name": "单人床",
+      "category": "bed",
+      "width": 1.973,
+      "depth": 0.855,
+      "height": 1.127,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/vintage_day_bed/vintage_day_bed_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "desk_school",
+      "name": "书桌",
+      "category": "table",
+      "width": 0.712,
+      "depth": 0.546,
+      "height": 0.883,
+      "color": "#4E6A78",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/SchoolDesk_01/SchoolDesk_01_1k.gltf",
+        "fit": "contain",
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
       }
     },
     {
@@ -69,8 +233,55 @@
       "height": 2.2,
       "color": "#A67C52",
       "model": {
-        "kind": "procedural",
-        "shape": "box"
+        "kind": "gltf",
+        "url": "/models/polyhaven/chinese_cabinet/chinese_cabinet_1k.gltf",
+        "fit": "contain",
+        "yaw": 180,
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "cabinet_bath",
+      "name": "卫生间柜",
+      "category": "cabinet",
+      "width": 0.55,
+      "depth": 0.35,
+      "height": 0.8,
+      "color": "#A67C52",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/chinese_cabinet/chinese_cabinet_1k.gltf",
+        "fit": "contain",
+        "yaw": 180,
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
+      }
+    },
+    {
+      "id": "cabinet_kitchen",
+      "name": "厨房柜",
+      "category": "cabinet",
+      "width": 0.8,
+      "depth": 0.5,
+      "height": 0.9,
+      "color": "#A67C52",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/polyhaven/chinese_cabinet/chinese_cabinet_1k.gltf",
+        "fit": "contain",
+        "yaw": 180,
+        "axes": {
+          "width": "x",
+          "height": "y",
+          "depth": "z"
+        }
       }
     }
   ],
@@ -79,13 +290,33 @@
       "id": "door_flat",
       "name": "平板门",
       "kind": "door",
-      "color": "#8C6A4A"
+      "color": "#8C6A4A",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/kenney/door-flat.glb",
+        "fit": "fill",
+        "axes": {
+          "width": "z",
+          "height": "y",
+          "depth": "x"
+        }
+      }
     },
     {
       "id": "door_glass",
       "name": "玻璃门",
       "kind": "door",
-      "color": "#9BB8C4"
+      "color": "#9BB8C4",
+      "model": {
+        "kind": "gltf",
+        "url": "/models/kenney/door-glass.glb",
+        "fit": "fill",
+        "axes": {
+          "width": "z",
+          "height": "y",
+          "depth": "x"
+        }
+      }
     },
     {
       "id": "window_sliding",

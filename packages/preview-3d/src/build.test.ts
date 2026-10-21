@@ -10,8 +10,8 @@ function loadScene(): Scene {
 describe("buildPreviewModel", () => {
   const model = buildPreviewModel(loadScene());
 
-  it("builds 25 meshes for the sample scene", () => {
-    expect(model.meshes).toHaveLength(25);
+  it("builds 32 meshes for the sample scene", () => {
+    expect(model.meshes).toHaveLength(32);
     expect(model.ceilingHeight).toBe(2.8);
   });
 

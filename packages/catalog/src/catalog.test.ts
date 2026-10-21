@@ -9,7 +9,19 @@ describe("catalog", () => {
       "wall_white",
       "wall_warm",
     ]);
-    expect(listItems().map((item) => item.id)).toEqual(["sofa_210", "sofa_160", "cabinet_120"]);
+    expect(listItems().map((item) => item.id)).toEqual([
+      "sofa_210",
+      "sofa_160",
+      "table_coffee",
+      "table_tea",
+      "table_side",
+      "shelf_wall",
+      "bed_gothic",
+      "table_nightstand",
+      "bed_day",
+      "desk_school",
+      "cabinet_120",
+    ]);
     expect(listOpeningStyles().map((item) => item.id)).toEqual([
       "door_flat",
       "door_glass",

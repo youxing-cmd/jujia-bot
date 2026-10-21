@@ -1,4 +1,5 @@
-import { getItem, getMaterial, getOpeningStyle, listItems, listMaterials, listOpeningStyles } from "@jujia/catalog";
+import { getItem, getMaterial, getOpeningStyle, listMaterials, listOpeningStyles } from "@jujia/catalog";
+import { demoClutter, suggestPlacements } from "@jujia/clutter";
 import type { Command } from "@jujia/commands";
 import type { Scene, SceneStatus } from "@jujia/scene";
 import { useMemo, useState } from "react";
@@ -57,6 +58,7 @@ export function App() {
   const [notice, setNotice] = useState<Notice>({ tone: "idle", text: "命令结果会显示在这里。" });
   const [showJson, setShowJson] = useState(false);
   const [cabinetSize, setCabinetSize] = useState(() => wardrobeSize(initial.scene));
+  const [pickedItemId, setPickedItemId] = useState<string | null>(null);
 
   const preview = useMemo(() => {
     if (!scene) return { model: null, error: null as string | null };
@@ -67,7 +69,9 @@ export function App() {
     }
   }, [scene]);
 
-  if (!scene) {
+  const suggestion = useMemo(() => (scene ? suggestPlacements(scene, demoClutter) : null), [scene]);
+
+  if (!scene || !suggestion) {
     return (
       <main className="stage">
         <div className="blocker">
@@ -81,13 +85,15 @@ export function App() {
 
   const level = firstLevel(scene);
   const living = level?.rooms.find((room) => room.id === "living");
-  const sofa = level?.slots.find((slot) => slot.id === "slot_sofa");
   const wardrobe = level?.slots.find((slot) => slot.id === "slot_wardrobe");
   const masterDoor = level?.openings.find((opening) => opening.id === "door_master");
   const floorMaterials = listMaterials().filter((material) => material.category === "floor");
   const wallMaterials = listMaterials().filter((material) => material.category === "wall");
-  const furniture = listItems().filter((item) => item.category !== "cabinet");
   const doorStyles = listOpeningStyles().filter((style) => style.kind === "door");
+  const furnitureChoices = [
+    { slotId: "slot_sofa", title: "客厅沙发", note: "新沙发不能超过槽位上限。", options: ["sofa_210", "sofa_160"] },
+    { slotId: "slot_coffee", title: "客厅茶几", note: "咖啡桌和茶桌都能放进这个位置。", options: ["table_coffee", "table_tea"] },
+  ] as const;
 
   function run(command: Command) {
     const result = applyCommand(scene!, command);
@@ -114,8 +120,9 @@ export function App() {
 
   const livingFloor = living ? getMaterial(living.floorMaterialId) : undefined;
   const livingWall = living ? getMaterial(living.wallMaterialId) : undefined;
-  const sofaItem = sofa?.catalogItemId ? getItem(sofa.catalogItemId) : undefined;
   const doorStyle = masterDoor?.styleId ? getOpeningStyle(masterDoor.styleId) : undefined;
+  const picked = suggestion.ok ? suggestion.placements.find((item) => item.itemId === pickedItemId) : undefined;
+  const highlight = picked ? { slotId: picked.slotId, label: `${demoClutter.find((item) => item.id === picked.itemId)?.name ?? picked.itemId} · 第 ${picked.shelf} 层` } : null;
 
   return (
     <main className="app">
@@ -124,8 +131,9 @@ export function App() {
           <p className="eyebrow">居家</p>
           <h1>{scene.name}</h1>
           <p className="hint">拖动旋转，滚轮缩放。只改软装，不拆墙。</p>
+          <p className="credit">沙发、桌、床、书架和衣柜来自 Poly Haven，门来自 Kenney，都是 CC0。</p>
         </div>
-        {preview.model && level ? <PreviewStage model={preview.model} rooms={level.rooms} /> : null}
+        {preview.model && level ? <PreviewStage model={preview.model} rooms={level.rooms} scene={scene} highlight={highlight} /> : null}
         {preview.error ? <div className="stage-note">{preview.error}</div> : null}
       </section>
       <aside className="panel">
@@ -142,6 +150,38 @@ export function App() {
             <button type="button" className="text-button" onClick={() => setStatus("plan_confirmed")}>恢复已确认</button>
             <button type="button" className="text-button" onClick={() => setStatus("frozen")}>冻结</button>
           </div>
+        </section>
+
+        <section className="section" aria-label="杂物归位">
+          <h3>杂物归位</h3>
+          <p className="meta">平面和比例确认之后，按这 11 件示例给建议。只看不改，场景 JSON 保持原样。</p>
+          {suggestion.ok ? (
+            <ul className="placed clutter-list">
+              {demoClutter.map((item) => {
+                const placed = suggestion.placements.find((entry) => entry.itemId === item.id);
+                const missed = suggestion.unplaced.find((entry) => entry.itemId === item.id);
+                const detail = placed
+                  ? `${placed.roomName} · ${placed.hostName} · 第 ${placed.shelf} 层${placed.shelfCount > 1 ? `起共 ${placed.shelfCount} 层` : ""}`
+                  : missed?.reason ?? "还没有位置";
+                return (
+                  <li key={item.id}>
+                    <button
+                      type="button"
+                      className="choice clutter-row"
+                      aria-pressed={pickedItemId === item.id}
+                      disabled={!placed}
+                      onClick={() => setPickedItemId((current) => (current === item.id ? null : item.id))}
+                    >
+                      <span>{item.name}</span>
+                      <span>{detail}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p className="meta">{suggestion.message}</p>
+          )}
         </section>
 
         <section className="section">
@@ -180,25 +220,52 @@ export function App() {
           </div>
         </section>
 
+        {furnitureChoices.map((group) => {
+          const slot = level?.slots.find((item) => item.id === group.slotId);
+          const current = slot?.catalogItemId ? getItem(slot.catalogItemId) : undefined;
+          return (
+            <section className="section" key={group.slotId}>
+              <h3>{group.title}</h3>
+              <p className="meta">
+                现在是{current?.name ?? "空槽位"}
+                {slot ? `，${slot.width} × ${slot.depth} × ${slot.height} 米` : ""}。{group.note}
+              </p>
+              <div className="choices">
+                {group.options.map((id) => {
+                  const item = getItem(id);
+                  if (!item) return null;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      className="choice"
+                      aria-pressed={slot?.catalogItemId === item.id}
+                      onClick={() => run({ type: "replace_furniture", slotId: group.slotId, catalogItemId: item.id })}
+                    >
+                      {item.name}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
+
         <section className="section">
-          <h3>客厅沙发</h3>
-          <p className="meta">
-            现在是{sofaItem?.name ?? "空槽位"}
-            {sofa ? `，${sofa.width} × ${sofa.depth} × ${sofa.height} 米` : ""}。新沙发不能超过槽位上限。
-          </p>
-          <div className="choices">
-            {furniture.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className="choice"
-                aria-pressed={sofa?.catalogItemId === item.id}
-                onClick={() => run({ type: "replace_furniture", slotId: "slot_sofa", catalogItemId: item.id })}
-              >
-                {item.name}
-              </button>
-            ))}
-          </div>
+          <h3>已经摆好</h3>
+          <p className="meta">这些位置只放一件，避免把床或书架换进沙发槽位。</p>
+          <ul className="placed">
+            {["slot_side", "slot_shelf", "slot_bed_master", "slot_nightstand", "slot_bed_second", "slot_desk"].map((slotId) => {
+              const slot = level?.slots.find((item) => item.id === slotId);
+              const item = slot?.catalogItemId ? getItem(slot.catalogItemId) : undefined;
+              const room = level?.rooms.find((entry) => entry.id === slot?.roomId);
+              return (
+                <li key={slotId}>
+                  {room?.name ?? "房间"} · {item?.name ?? slotId}
+                </li>
+              );
+            })}
+          </ul>
         </section>
 
         <section className="section">

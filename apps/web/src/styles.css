@@ -63,6 +63,12 @@ h1 {
   font-size: 13px;
 }
 
+.credit {
+  margin: 6px 0 0;
+  color: #8a7d70;
+  font-size: 11px;
+}
+
 .stage-note, .blocker {
   position: absolute;
   z-index: 2;
@@ -126,6 +132,14 @@ h1 {
   color: #6d6256;
   font-size: 13px;
   line-height: 1.5;
+}
+
+.placed {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: #3d342b;
+  font-size: 13px;
+  line-height: 1.7;
 }
 
 .choices, .status-row, .actions {
@@ -210,4 +224,42 @@ input[type="number"] {
   .stage { min-height: 68vh; }
   .panel { min-height: auto; border-left: 0; border-top: 1px solid #d9cbb8; }
   h1 { font-size: 32px; }
+}
+
+.clutter-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.clutter-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-align: left;
+  line-height: 1.45;
+}
+
+.clutter-row span:last-child {
+  color: #6d6256;
+  font-size: 12px;
+}
+
+.clutter-row[aria-pressed="true"] span:last-child {
+  color: #f7f1e7;
+}
+
+.choice:disabled {
+  cursor: default;
+  opacity: 0.78;
+}
+
+.slot-tag {
+  padding: 4px 8px;
+  background: rgba(36, 28, 20, 0.9);
+  color: #fffaf4;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
